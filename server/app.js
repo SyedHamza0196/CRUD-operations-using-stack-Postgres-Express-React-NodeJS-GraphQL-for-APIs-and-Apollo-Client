@@ -1,19 +1,12 @@
 const express = require("express");
-const { graphqlHTTP } = require('express-graphql')
-const schema = require('./schema/schema')
-const { Pool, Client } = require('pg')
-
-// const connectionString = 'postgresql://<user>:<pass>@localhost:5432/<db>';
-// const connectionString = 'postgresql://postgres@localhost:5432/gql_library';
-// const client = new Client({
-    // connectionString
-// });
-
-// client.connect(() => {
-    // console.log('connected to db')
-// });
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./schema/schema');
+const cors = require('cors');
 
 const app = express();
+
+// allow cross server request
+app.use(cors()); 
 
 // middleware
 app.use('/graphql',graphqlHTTP({
